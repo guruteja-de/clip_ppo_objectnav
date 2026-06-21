@@ -6,10 +6,12 @@ from typing import List
 class Config:
 
     # ── Environment ───────────────────────────────────────────────
-    scenes: List[str] = field(default_factory=lambda: [
-        "FloorPlan1", "FloorPlan2", "FloorPlan3",
-        "FloorPlan4", "FloorPlan5",
-    ])
+    # scenes: List[str] = field(default_factory=lambda: [
+    #     "FloorPlan1", "FloorPlan2", "FloorPlan3",
+    #     "FloorPlan4", "FloorPlan5", ])
+
+    scenes: List[str] = field(default_factory=lambda: [f"FloorPlan{i}" for i in range(1, 31)])
+   
     target_objects: List[str] = field(default_factory=lambda: [
         "refrigerator", "microwave", "sink", "toaster",
     ])
@@ -42,8 +44,8 @@ class Config:
     entropy_coef:   float = 0.05
     value_coef:     float = 0.5
     max_grad_norm:  float = 0.5
-    n_steps:        int   = 1024
-    batch_size:     int   = 64
+    n_steps:        int   = 2048
+    batch_size:     int   = 128
     n_epochs:       int   = 4
 
     # ── Network ───────────────────────────────────────────────────
@@ -51,8 +53,8 @@ class Config:
     hidden_dim2: int = 256
 
     # ── Training ──────────────────────────────────────────────────
-    total_timesteps: int = 3_000     # small for local test
-    save_every:      int = 50_000
+    total_timesteps: int =  5_000_000 #3_000     # small for local test
+    save_every:      int = 250_000 #50_000
     seed:            int = 42
 
     # ── Paths ─────────────────────────────────────────────────────
