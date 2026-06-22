@@ -27,7 +27,7 @@ def evaluate(checkpoint_path: str, n_episodes: int = 50, render: bool = False):
 
     # ── Load checkpoint ───────────────────────────────────────────
     print(f"\nLoading: {checkpoint_path}")
-    ckpt   = torch.load(checkpoint_path, map_location=device)
+    ckpt   = torch.load(checkpoint_path, map_location=device, weights_only = False)
     config = ckpt.get("config", Config())
 
     # ── Build env + network ───────────────────────────────────────
