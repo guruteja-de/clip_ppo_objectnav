@@ -1,0 +1,29 @@
+#!/bin/bash
+#SBATCH --job-name=clip_ppo_objectnav
+#SBATCH --account=default
+#SBATCH --partition=c23g
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --gres=gpu:1
+#SBATCH --mem=32G
+#SBATCH --time=16:00:00
+#SBATCH --output=logs/train_%j.out
+#SBATCH --error=logs/train_%j.err
+
+mkdir -p logs checkpoints
+
+module purge
+module load GCC/12.3.0
+module load CUDA/12.4.0
+
+source /hpcwork/tkz19140/clip_ppo_objectnav/venv/bin/activate
+
+
+export PYTHONUNBUFFERED=1
+
+
+
+python -u train.py
+
+echo "Training complete."

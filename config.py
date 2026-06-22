@@ -17,7 +17,7 @@ class Config:
     ])
     image_size: int    = 224
     fov: int           = 90
-    max_steps: int     = 500
+    max_steps: int     = 200
     min_steps: int     = 15    # Stop blocked before this step
     visibility_distance: float = 1.5
     grid_size: float   = 0.25
@@ -31,10 +31,10 @@ class Config:
                                      # e.g. "find the refrigerator"
 
     # ── Reward ────────────────────────────────────────────────────
-    success_reward:     float = 5.0    # Big bonus when agent calls Stop AND target is truly visible.
-    false_stop_penalty: float = -1.0   #Penalty when agent calls Stop but target is NOT visible. Discourages random stopping.
+    success_reward:     float = 10.0 #5.0    # Big bonus when agent calls Stop AND target is truly visible.
+    false_stop_penalty: float = -0.5 #-2.0   #Penalty when agent calls Stop but target is NOT visible. Discourages random stopping.
     step_penalty:       float = -0.01  #Small penalty every step. Encourages finding target quickly rather than wandering forever.
-    clip_reward_scale:  float = 1.0    #Multiplier on the CLIP softmax probability reward. 1.0 means full scale (0–1 range).
+    clip_reward_scale:  float = 0.05 #0.1    #Multiplier on the CLIP softmax probability reward. 1.0 means full scale (0–1 range).
 
     # ── PPO ───────────────────────────────────────────────────────
     lr:             float = 3e-4
@@ -53,8 +53,8 @@ class Config:
     hidden_dim2: int = 256
 
     # ── Training ──────────────────────────────────────────────────
-    total_timesteps: int =  5_000_000 #3_000     # small for local test
-    save_every:      int = 250_000 #50_000
+    total_timesteps: int =  1_000_000 #50_000 #5_000_000 #3_000     # small for local test
+    save_every:      int = 100_000 #250_000 #50_000
     seed:            int = 42
 
     # ── Paths ─────────────────────────────────────────────────────

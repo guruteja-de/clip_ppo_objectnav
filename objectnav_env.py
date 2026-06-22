@@ -71,6 +71,7 @@ class ObjectNavEnv(gym.Env):
             fieldOfView          = config.fov,
             rotateStepDegrees    = config.rotation_step,
             headlessMode         = True,
+            platform             = ai2thor.platform.CloudRendering,
         )
 
         # ── Episode state ─────────────────────────────────────────
